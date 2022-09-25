@@ -1,0 +1,21 @@
+function sumColoredCells(sumRange,colorRef,rangeSum) {  //sum the all of the cells of the specified color
+  var activeRange = SpreadsheetApp.getActiveRange();
+  var activeSheet = activeRange.getSheet();
+  var range = activeSheet.getRange(sumRange);
+  var rangeHeight = range.getHeight();
+  var rangeWidth = range.getWidth();
+  
+  var bg = range.getBackgrounds();
+  var values = range.getValues();
+  
+  var colorCell = activeSheet.getRange(colorRef);
+  var color = colorCell.getBackground();  
+  var total = 0;
+  
+  for(var i = 0; i < rangeHeight; i++)
+    for(var j = 0; j < rangeWidth; j++)
+      if( bg[i][j] == color )
+        total += values[i][j];
+
+  return total;
+};
