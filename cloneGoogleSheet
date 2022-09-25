@@ -1,0 +1,13 @@
+function cloneGoogleSheet() { //create new order sheet and deposit into specified folder
+  //grab id for monthly folder
+  var monthlyid = SpreadsheetApp.openById('1weANHUVzA3jetI-i9d-0tTiQ405r0euFoJ77zxSUkWw').getActiveSheet().getRange('A1').getValue();
+
+  var destFolder = DriveApp.getFolderById(monthlyid);
+  var date = Utilities.formatDate(new Date(), "GMT-7", "MM/dd/yyyy");
+  var id = function getId() {
+  Browser.msgBox('Spreadsheet key: ' + SpreadsheetApp.getActiveSpreadsheet().getId());
+} 
+  var newName = "Orders Week of " + date;
+
+  DriveApp.getFileById("14UnLP2OXQANiTnPkAsn-d6igLFqmMrpcjo-_of1AVa0").makeCopy(newName, destFolder);
+}
