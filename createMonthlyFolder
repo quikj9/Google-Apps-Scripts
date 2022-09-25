@@ -1,0 +1,11 @@
+function createMonthlyFolder() { //create folder for the previous months orders
+  var date = new Date(); //get current date and time
+  const month = ["January","February","March","April","May","June","July","August","September","October","November","December"]; //get the name of the month
+  var name = month[date.getMonth()];
+  var parentFolder =  DriveApp.getFolderById('1ZKa-peFklehDduILF_ChaYnoJIwu8hEv'); //specify Orders folder
+  var id = parentFolder.createFolder(name).getId();
+
+  //save monthly folder ID in the monthly ID spreadsheet
+  var sheet = SpreadsheetApp.openById('1weANHUVzA3jetI-i9d-0tTiQ405r0euFoJ77zxSUkWw').getActiveSheet();
+  var cell = sheet.getRange('A1').setValue(id);
+}
